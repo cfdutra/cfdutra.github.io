@@ -1,0 +1,260 @@
+/* Variáveis de Cores (Facilita muito a manutenção e o modo noturno/claro) */
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-darker: #121212;
+    --bg-card: #2a2a2a;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --color-orange: #f97316;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+.text-orange { color: var(--color-orange); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* --- Navegação --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-orange);
+}
+
+.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+.nav-links a { color: var(--text-white); text-decoration: none; font-size: 0.95rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--color-orange); }
+.theme-toggle { cursor: pointer; color: var(--text-white); font-size: 1.2rem; }
+
+/* --- Seção Início (Hero) --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), 
+                url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=1920&q=80') center/cover;
+    position: relative;
+}
+
+.greeting { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 10px; }
+.main-title { font-size: 4.5rem; font-weight: 700; margin-bottom: 10px; }
+.sub-title { font-size: 1.5rem; color: var(--text-gray); font-weight: 400; margin-bottom: 30px; }
+
+/* Ícones Sociais no Hero */
+.social-links { display: flex; align-items: center; gap: 20px; justify-content: center; }
+.social-links .line { width: 50px; height: 1px; background-color: var(--text-gray); }
+.social-links a { color: var(--text-gray); font-size: 1.5rem; transition: 0.3s; }
+.social-links a:hover { color: var(--color-orange); transform: translateY(-3px); }
+
+/* Indicador de Scroll */
+.scroll-indicator { position: absolute; bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.scroll-indicator p { font-size: 0.8rem; letter-spacing: 4px; color: var(--text-gray); }
+.scroll-line { width: 1px; height: 40px; background-color: var(--text-gray); }
+
+/* --- Títulos das Seções --- */
+.section-title { font-size: 2.5rem; font-weight: 600; margin-bottom: 10px; }
+.title-underline { width: 100px; height: 3px; background-color: var(--color-orange); margin-bottom: 40px; position: relative; }
+.title-underline::after { content: '...'; position: absolute; right: -25px; top: -12px; color: var(--color-orange); font-size: 1.2rem; font-weight: bold; }
+
+/* --- Seção Sobre --- */
+.about-section { padding: 120px 0; background-color: var(--bg-darker); }
+
+/* Caixa principal que segura o texto e a foto lado a lado */
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* Lado Esquerdo (Texto) */
+.about-text {
+    flex: 2; /* Ocupa o máximo de espaço possível */
+}
+
+.about-text p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Lado Direito (Foto) */
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end   ;
+}
+
+.about-image img {
+    max-width: 100%;
+    width: 350px; /* Tamanho da foto */
+    border-radius: 15px; /* Deixa as bordas arredondadas (ou coloque 50% se quiser um círculo) */
+    border: 3px solid var(--bg-card); /* Borda discreta */
+    box-shadow: 10px 10px 0px var(--color-orange); /* Sombra dura laranja para dar um efeito moderno */
+    transition: transform 0.3s ease;
+}
+
+/* Efeito ao passar o mouse na foto */
+.about-image img:hover {
+    transform: translateY(-10px);
+}
+
+/* Ajuste para Celulares (Empilha a foto embaixo do texto em telas menores) */
+@media (max-width: 900px) {
+    .about-content {
+        flex-direction: column;
+    }
+    .about-image img {
+        width: 280px;
+        margin-top: 30px;
+    }
+}
+/* Cards de Habilidades */
+.tech-container { display: flex; gap: 20px; margin-top: 50px; flex-wrap: wrap; }
+.tech-card {
+    background-color: var(--bg-card);
+    padding: 30px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 130px;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
+}
+.tech-card i { font-size: 2.5rem; }
+.tech-card span { font-size: 0.9rem; font-weight: 500; }
+.tech-card:hover { transform: translateY(-10px); border-bottom-color: var(--color-orange); background-color: #333; }
+
+/* --- Seção Projetos --- */
+.projects-section { padding: 120px 0; background-color: var(--bg-dark); }
+.subtitle { margin-bottom: 10px; font-weight: 500; }
+
+.project-wrapper { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
+.project-wrapper.reverse { flex-direction: row-reverse; }
+
+.project-image { flex: 1; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
+.project-image img { width: 100%; height: auto; display: block; transition: 0.5s; }
+.project-image:hover img { transform: scale(1.05); }
+
+.project-info { flex: 1; }
+.project-info h3 { font-size: 2rem; margin-bottom: 20px; color: var(--color-orange); }
+.project-info p { color: var(--text-gray); line-height: 1.7; margin-bottom: 20px; }
+
+.tech-tags { display: flex; gap: 15px; margin-bottom: 30px; }
+.tech-tags span { color: var(--color-orange); font-weight: 600; font-size: 0.9rem; }
+
+.btn-projeto { color: var(--text-white); text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+.btn-projeto:hover { color: var(--color-orange); }
+
+/* --- Botão Topo --- */
+#btn-top {
+    position: fixed; bottom: 30px; right: 30px;
+    background-color: var(--color-orange); color: white;
+    width: 50px; height: 50px; border-radius: 50%;
+    border: none; cursor: pointer; font-size: 1.2rem;
+    display: none; /* Escondido por padrão, o JS controla */
+    transition: 0.3s; z-index: 999;
+}
+#btn-top:hover { transform: scale(1.1); background-color: #e06512; }
+
+/* --- Seção Contato --- */
+.contact-section { 
+    padding: 120px 0; 
+    background-color: var(--bg-darker); /* Alterna a cor de fundo para destacar do Projetos */
+}
+
+.contact-content { 
+    text-align: center; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.contact-text { 
+    color: var(--text-gray); 
+    font-size: 1.1rem; 
+    line-height: 1.8; 
+    margin-bottom: 50px; 
+}
+
+/* Container dos cartões usando Flexbox */
+.contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Permite que os cartões desçam de linha em telas pequenas */
+}
+
+/* O Cartão em si */
+.contact-card {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-white);
+    transition: 0.3s;
+    border: 1px solid transparent;
+    width: 160px; /* Largura fixa para ficarem todos iguais */
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--color-orange); /* Ícones na cor laranja do tema */
+    transition: 0.3s;
+}
+
+.contact-card span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Efeito ao passar o mouse */
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-orange);
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.1); /* Uma sombra laranja bem sutil */
+}
+
+.contact-card:hover i {
+    transform: scale(1.1); /* Faz o ícone dar um leve "pulo" */
+}
+
+/* --- Rodapé --- */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--bg-dark);
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(249, 115, 22, 0.2); /* Linha divisória bem fraquinha */
+}
